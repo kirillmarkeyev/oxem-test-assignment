@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/oxem-test-assignment/static/css/main.073c9b0a.css",
+    "main.js": "/oxem-test-assignment/static/js/main.536e8149.js",
+    "static/media/logo.svg": "/oxem-test-assignment/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/oxem-test-assignment/index.html",
+    "main.073c9b0a.css.map": "/oxem-test-assignment/static/css/main.073c9b0a.css.map",
+    "main.536e8149.js.map": "/oxem-test-assignment/static/js/main.536e8149.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.536e8149.js"
+  ]
+}

@@ -38,6 +38,17 @@ form {
   position: absolute;
 }
 
+input[type="number"] {
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+ 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	display: none;
+}
+
 .inner-sign {
   width: auto;
   height: 36px;
@@ -75,13 +86,51 @@ form {
   font-family: "Nekst-Black", sans-serif;
   font-size: 30px;
   line-height: 120%;
-  border: 0;
+  border: none;
 }
 
-.input-field:focus {
+.input-field-small {
+  box-sizing: border-box;
+  right: 7px;
+  top: 7px;
+  width: 70px;
+  height: 54px;
+  padding-left: 18px;
+  background-color: #E0E0E0;
+  border-radius: 16px;
+  color: #575757;
+  font-family: "Nekst-Black", sans-serif;
+  font-size: 20px;
+  line-height: 120%;
+  border: none;
+}
+
+.inner-sign-small {
+  top: 22px;
+  right: 22px;
+  width: auto;
+  height: auto;
+  background-color: #E0E0E0;
+  color: #575757;
+  text-align: center;
+  font-family: "Nekst-Black", sans-serif;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+.input-field:focus,
+.input-field-small:focus {
   background-color: white;
   outline: none;
   border: 2px solid #F3F3F4;
+}
+
+.input-field:focus + .inner-sign {
+  background-color: white;
+}
+
+.input-field-small:focus + .inner-sign-small {
+  background-color: white;
 }
 
 input[type="range"] {
@@ -89,6 +138,10 @@ input[type="range"] {
   left: 24px;
   width: 812px;
 	-webkit-appearance: none;
+}
+
+input[type="range"].w-short {
+  width: 631px;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -119,6 +172,3 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   border: none;
 }
-
-    
-

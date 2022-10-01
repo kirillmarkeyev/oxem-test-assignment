@@ -3,14 +3,23 @@ import './App.css';
 
 function App() {
   const [carPrice, setCarPrice] = useState(3300000);
-  const [initPayment, setInitPayment] = useState('420000');
+  const [initPayment, setInitPayment] = useState(10);
   const [leasePeriod, setLeasePeriod] = useState(60);
 
   const minPrice = 1000000;
   const maxPrice = 6000000;
 
+  const minPayment = 10;
+  const maxPayment = 60;
+
   const minPeriod = 1;
   const maxPeriod = 60;
+
+  const localeOptions = {
+    style: 'currency',
+    currency: 'RUB',
+    minimumFractionDigits: 0,
+  };
 
   const inputRef = useRef();
 
@@ -34,6 +43,14 @@ function App() {
     setInitPayment(e.target.value);
   };
 
+  const handleInitCheck = () => {
+    if (initPayment < minPayment) {
+      setInitPayment(minPayment);
+    } else if (initPayment > maxPayment) {
+      setInitPayment(maxPayment);
+    }
+  };
+
   const handleLeasePeriod = (e) => {
     setLeasePeriod(e.target.value);
   };
@@ -46,6 +63,11 @@ function App() {
     }
   };
 
+  const getInitPaymentInRub = () => {
+    const rub = (initPayment * carPrice) / 100;
+    return rub;
+  };
+
   return (
     <div className="main">
       <h1 className="header">Рассчитайте стоимость автомобиля в лизинг</h1>
@@ -56,10 +78,10 @@ function App() {
             <input
               className="input-field"
               name="carPrice"
-              type="text"
+              type="number"
               id="carPrice"
               value={carPrice}
-              onInput={handlePriceChange}
+              onChange={handlePriceChange}
               onBlur={handlePriceCheck}
               ref={inputRef}
             />
@@ -76,14 +98,29 @@ function App() {
         </div>
         <div className="input-el">
           <p className="input-title">Первоначальный взнос</p>
-          <input
-            className="input-field"
-            name="initPayment"
-            type="text"
-            id="initPayment"
-            value={initPayment}
-            onChange={handleInitPayment}
-          />
+          <div className="relative">
+            <div className="input-field">
+              {getInitPaymentInRub().toLocaleString('ru-RU', localeOptions)}
+              <input
+                className="input-field-small absolute"
+                name="initPayment"
+                type="number"
+                id="initPayment"
+                value={initPayment}
+                onChange={handleInitPayment}
+                onBlur={handleInitCheck}
+              />
+              <div className="absolute inner-sign-small">%</div>
+            </div>
+            <input
+              className="absolute w-short"
+              type="range"
+              min={minPayment}
+              max={maxPayment}
+              value={initPayment}
+              onChange={handleInitPayment}
+            />
+          </div>
         </div>
         <div className="input-el">
           <p className="input-title">Срок лизинга</p>
@@ -91,7 +128,7 @@ function App() {
             <input
               className="input-field"
               name="leasePeriod"
-              type="text"
+              type="number"
               id="leasePeriod"
               value={leasePeriod}
               onChange={handleLeasePeriod}

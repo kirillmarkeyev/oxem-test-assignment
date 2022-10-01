@@ -38,18 +38,24 @@ form {
   position: absolute;
 }
 
+.inner-sign {
+  width: auto;
+  height: 36px;
+  right: 16px;
+  top: 16px;
+  background-color: #F3F3F4;
+  text-align: center;
+  color: #575757;
+  font-size: 30px;
+  line-height: 120%;
+  font-family: "Nekst-Black", sans-serif;
+}
+
 .input-el {
   margin-bottom: 32px;
 }
 
 .input-title {
-  font-family: "Gilroy", sans-serif;
-  font-size: 16px;
-  line-height: 125%;
-}
-
-label {
-  display: block;
   font-family: "Gilroy", sans-serif;
   font-size: 16px;
   line-height: 125%;
@@ -90,15 +96,29 @@ input[type="range"]::-webkit-slider-runnable-track {
   box-sizing: border-box;
   height: 2px;
   background: #FF9514;
-  }
+}
 
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background: #FF9514;
-    width: 20px;
-    height: 20px;
-    margin-top: -9px;
-    border-radius: 50%;
-    }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #FF9514;
+  width: 20px;
+  height: 20px;
+  margin-top: -9px;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: #FF9514;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: #FF9514;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+}
+
     
 

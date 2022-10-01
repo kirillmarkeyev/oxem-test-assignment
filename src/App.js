@@ -2,9 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [carPrice, setCarPrice] = useState('3300000');
+  const [carPrice, setCarPrice] = useState(3300000);
   const [initPayment, setInitPayment] = useState('420000');
-  const [leasePeriod, setLeasePeriod] = useState('60');
+  const [leasePeriod, setLeasePeriod] = useState(60);
+
+  const minPrice = 1000000;
+  const maxPrice = 6000000;
+
+  const minPeriod = 1;
+  const maxPeriod = 60;
 
   const inputRef = useRef();
 
@@ -16,12 +22,28 @@ function App() {
     setCarPrice(e.target.value);
   };
 
+  const handlePriceCheck = () => {
+    if (carPrice < minPrice) {
+      setCarPrice(minPrice);
+    } else if (carPrice > maxPrice) {
+      setCarPrice(maxPrice);
+    }
+  };
+
   const handleInitPayment = (e) => {
     setInitPayment(e.target.value);
   };
 
   const handleLeasePeriod = (e) => {
     setLeasePeriod(e.target.value);
+  };
+
+  const handlePeriodCheck = () => {
+    if (leasePeriod < minPeriod) {
+      setLeasePeriod(minPeriod);
+    } else if (leasePeriod > maxPeriod) {
+      setLeasePeriod(maxPeriod);
+    }
   };
 
   return (
@@ -37,14 +59,16 @@ function App() {
               type="text"
               id="carPrice"
               value={carPrice}
-              onChange={handlePriceChange}
+              onInput={handlePriceChange}
+              onBlur={handlePriceCheck}
               ref={inputRef}
             />
+            <div className="absolute inner-sign">₽</div>
             <input
               className="absolute"
               type="range"
-              min="1000000"
-              max="6000000"
+              min={minPrice}
+              max={maxPrice}
               value={carPrice}
               onChange={handlePriceChange}
             />
@@ -63,14 +87,26 @@ function App() {
         </div>
         <div className="input-el">
           <p className="input-title">Срок лизинга</p>
-          <input
-            className="input-field"
-            name="leasePeriod"
-            type="text"
-            id="leasePeriod"
-            value={leasePeriod}
-            onChange={handleLeasePeriod}
-          />
+          <div className="relative">
+            <input
+              className="input-field"
+              name="leasePeriod"
+              type="text"
+              id="leasePeriod"
+              value={leasePeriod}
+              onChange={handleLeasePeriod}
+              onBlur={handlePeriodCheck}
+            />
+            <div className="absolute inner-sign">мес.</div>
+            <input
+              className="absolute"
+              type="range"
+              min={minPeriod}
+              max={maxPeriod}
+              value={leasePeriod}
+              onChange={handleLeasePeriod}
+            />
+          </div>
         </div>
       </form>
     </div>

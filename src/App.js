@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-properties */
+/* eslint-disable prefer-exponentiation-operator */
+
 import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
@@ -15,10 +18,12 @@ function App() {
   const minPeriod = 1;
   const maxPeriod = 60;
 
+  const interestRate = 0.035; // 3.5%
+
   const localeOptions = {
     style: 'currency',
     currency: 'RUB',
-    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   };
 
   const inputRef = useRef();
@@ -63,15 +68,20 @@ function App() {
     }
   };
 
-  const getInitPaymentInRub = () => {
-    const rub = (initPayment * carPrice) / 100;
-    return rub;
+  const initPaymentInRub = (initPayment * carPrice) / 100;
+  const monthlyPayment = (carPrice - initPaymentInRub)
+   * ((interestRate * Math.pow((1 + interestRate), leasePeriod))
+    / (Math.pow((1 + interestRate), leasePeriod) - 1));
+  const totalSum = initPaymentInRub + leasePeriod * monthlyPayment;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
     <div className="main">
       <h1 className="header">Рассчитайте стоимость автомобиля в лизинг</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="input-el">
           <p className="input-title">Стоимость автомобиля</p>
           <div className="relative">
@@ -87,7 +97,7 @@ function App() {
             />
             <div className="absolute inner-sign">₽</div>
             <input
-              className="absolute"
+              className="absolute range"
               type="range"
               min={minPrice}
               max={maxPrice}
@@ -100,11 +110,12 @@ function App() {
           <p className="input-title">Первоначальный взнос</p>
           <div className="relative">
             <div className="input-field">
-              {getInitPaymentInRub().toLocaleString('ru-RU', localeOptions)}
+              {initPaymentInRub.toLocaleString('ru-RU', localeOptions)}
               <input
                 className="input-field-small absolute"
                 name="initPayment"
                 type="number"
+                max="99"
                 id="initPayment"
                 value={initPayment}
                 onChange={handleInitPayment}
@@ -143,6 +154,23 @@ function App() {
               value={leasePeriod}
               onChange={handleLeasePeriod}
             />
+          </div>
+        </div>
+        <div className="container gap">
+          <div className="result-item">
+            <p className="result-title">Сумма договора лизинга</p>
+            <div className="result-field">
+              {totalSum.toLocaleString('ru-RU', localeOptions)}
+            </div>
+          </div>
+          <div className="result-item">
+            <p className="result-title">Ежемесячный платеж от</p>
+            <div className="result-field">
+              {monthlyPayment.toLocaleString('ru-RU', localeOptions)}
+            </div>
+          </div>
+          <div className="btn-container">
+            <button type="submit">Оставить заявку</button>
           </div>
         </div>
       </form>

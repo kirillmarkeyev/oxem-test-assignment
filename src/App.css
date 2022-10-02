@@ -28,6 +28,7 @@
 form {
   width: 928px;
   margin-left: 48px;
+  margin-bottom: 120px;
 }
 
 .relative {
@@ -36,6 +37,10 @@ form {
 
 .absolute {
   position: absolute;
+}
+
+.flex {
+  display: flex;
 }
 
 input[type="number"] {
@@ -66,7 +71,10 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-bottom: 32px;
 }
 
-.input-title {
+.input-title,
+.result-title {
+  margin: 0;
+  padding: 0;
   font-family: "Gilroy", sans-serif;
   font-size: 16px;
   line-height: 125%;
@@ -95,7 +103,7 @@ input[type="number"]::-webkit-inner-spin-button {
   top: 7px;
   width: 70px;
   height: 54px;
-  padding-left: 18px;
+  padding-left: 15px;
   background-color: #E0E0E0;
   border-radius: 16px;
   color: #575757;
@@ -107,7 +115,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .inner-sign-small {
   top: 22px;
-  right: 22px;
+  right: 19px;
   width: auto;
   height: auto;
   background-color: #E0E0E0;
@@ -138,6 +146,13 @@ input[type="range"] {
   left: 24px;
   width: 812px;
 	-webkit-appearance: none;
+}
+
+@-moz-document url-prefix() {
+  input[type="range"] {
+    top: 56px;
+    background: none;
+  }
 }
 
 input[type="range"].w-short {
@@ -171,4 +186,68 @@ input[type="range"]::-moz-range-thumb {
   height: 20px;
   border-radius: 50%;
   border: none;
+}
+
+.input-field:hover ~ input[type="range"]::-webkit-slider-runnable-track {
+  height: 1px;
+}
+
+.input-field:hover ~ input[type="range"]::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  margin-top: -11px;
+}
+
+.input-field:hover ~ input[type="range"]::-moz-range-track {
+  height: 1px;
+}
+
+.input-field:hover ~ input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.result-item {
+  width: auto;
+  height: 81px;
+}
+
+.gap {
+  column-gap: 201px;
+  row-gap: 44px;
+}
+
+.result-field {
+  width: max-content;
+  margin-top: 8px;
+  color: #333333;
+  font-family: "Nekst-Black", sans-serif;
+  font-size: 54px;
+  line-height: 90%;
+}
+
+button {
+  width: 345px;
+  height: 68px;
+  border-radius: 40px;
+  padding: 8px 16px 12px;
+  border: none;
+  background-color: #FF9514;
+  color: #ffffff;
+  font-family: "Nekst-Black", sans-serif;
+  font-size: 30px;
+  line-height: 120%;
+}
+
+button:hover {
+  background-color: #111111;
+}
+
+button:active {
+  background-color: #575757;
 }

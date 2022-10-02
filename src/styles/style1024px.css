@@ -141,4 +141,17 @@
     font-size: 30px;
     line-height: 120%;
   }
+
+  button:hover {
+    background-color: #111111;
+    cursor: pointer;
+  }
+
+  button:active {
+    background-color: #575757;
+  }
+    
+  button:disabled {
+    background: rgba(255, 149, 20, 0.4)
+  }
 }

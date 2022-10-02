@@ -2,29 +2,27 @@
 /* eslint-disable prefer-exponentiation-operator */
 
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
+
+import {
+  minPrice,
+  maxPrice,
+  minPayment,
+  maxPayment,
+  minPeriod,
+  maxPeriod,
+  interestRate,
+  localeOptions,
+  route,
+} from './utils/index.js';
 
 function App() {
   const [carPrice, setCarPrice] = useState(3300000);
   const [initPayment, setInitPayment] = useState(10);
   const [leasePeriod, setLeasePeriod] = useState(60);
 
-  const minPrice = 1000000;
-  const maxPrice = 6000000;
-
-  const minPayment = 10;
-  const maxPayment = 60;
-
-  const minPeriod = 1;
-  const maxPeriod = 60;
-
-  const interestRate = 0.035; // 3.5%
-
-  const localeOptions = {
-    style: 'currency',
-    currency: 'RUB',
-    maximumFractionDigits: 0,
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputRef = useRef();
 
@@ -68,14 +66,37 @@ function App() {
     }
   };
 
-  const initPaymentInRub = (initPayment * carPrice) / 100;
-  const monthlyPayment = (carPrice - initPaymentInRub)
-   * ((interestRate * Math.pow((1 + interestRate), leasePeriod))
-    / (Math.pow((1 + interestRate), leasePeriod) - 1));
-  const totalSum = initPaymentInRub + leasePeriod * monthlyPayment;
+  const initPaymentInRub = Math.round(((initPayment * carPrice) / 100) * 100) / 100;
 
-  const handleSubmit = (e) => {
+  const monthlyPayment = Math.round(((carPrice - initPaymentInRub)
+   * ((interestRate * Math.pow((1 + interestRate), leasePeriod))
+    / (Math.pow((1 + interestRate), leasePeriod) - 1))) * 100) / 100;
+
+  const totalSum = Math.round((initPaymentInRub + leasePeriod * monthlyPayment) * 100) / 100;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true);
+    const data = {
+      carPrice,
+      initPaymentInRub,
+      leasePeriod,
+      monthlyPayment,
+      totalSum,
+    };
+    try {
+      const response = await axios.post(route, data);
+      console.log(response.status);
+      setIsLoading(false);
+    } catch (err) {
+      if (err.isAxiosError) {
+        console.log('Network error');
+      } else {
+        console.log('Unknown error');
+      }
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -170,7 +191,12 @@ function App() {
             </div>
           </div>
           <div className="btn-container">
-            <button type="submit">Оставить заявку</button>
+            <button
+              type="submit"
+              disabled={isLoading}
+            >
+              Оставить заявку
+            </button>
           </div>
         </div>
       </form>

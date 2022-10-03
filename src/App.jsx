@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-properties */
 /* eslint-disable prefer-exponentiation-operator */
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import {
@@ -22,12 +22,6 @@ function App() {
   const [leasePeriod, setLeasePeriod] = useState(60);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  const inputRef = useRef();
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   const handlePriceChange = (e) => {
     setCarPrice(e.target.value);
@@ -113,7 +107,7 @@ function App() {
               value={carPrice}
               onChange={handlePriceChange}
               onBlur={handlePriceCheck}
-              ref={inputRef}
+              disabled={isLoading}
             />
             <div className="absolute inner-sign">₽</div>
             <input
@@ -123,6 +117,7 @@ function App() {
               max={maxPrice}
               value={carPrice}
               onChange={handlePriceChange}
+              disabled={isLoading}
             />
           </div>
         </div>
@@ -140,6 +135,7 @@ function App() {
                 value={initPayment}
                 onChange={handleInitPayment}
                 onBlur={handleInitCheck}
+                disabled={isLoading}
               />
               <div className="absolute inner-sign-small">%</div>
             </div>
@@ -150,6 +146,7 @@ function App() {
               max={maxPayment}
               value={initPayment}
               onChange={handleInitPayment}
+              disabled={isLoading}
             />
           </div>
         </div>
@@ -164,6 +161,7 @@ function App() {
               value={leasePeriod}
               onChange={handleLeasePeriod}
               onBlur={handlePeriodCheck}
+              disabled={isLoading}
             />
             <div className="absolute inner-sign">мес.</div>
             <input
@@ -173,6 +171,7 @@ function App() {
               max={maxPeriod}
               value={leasePeriod}
               onChange={handleLeasePeriod}
+              disabled={isLoading}
             />
           </div>
         </div>

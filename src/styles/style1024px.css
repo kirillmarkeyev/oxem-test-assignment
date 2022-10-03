@@ -1,7 +1,7 @@
 @media screen and (min-width: 1024px) {  
   .header {
-    min-width: 753px;
-    max-height: 98px;
+    width: 753px;
+    height: 98px;
     margin: 100px 48px 44px;
     font-size: 54px;
     line-height: 90%;

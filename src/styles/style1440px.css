@@ -1,0 +1,66 @@
+@media screen and (min-width: 1440px) {
+  .header {
+    margin: 213px 47px 32px;
+    color: #111111;
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 47px;
+    margin-right: 48px;
+    margin-bottom: 213px;
+  }
+
+  .input-el {
+    width: 427px;
+    height: 119px;
+  }
+
+  input[type="range"] {
+    top: 64px;
+    left: 24px;
+    width: 311px;
+    -webkit-appearance: none;
+  }
+
+  @-moz-document url-prefix() {
+    input[type="range"] {
+      top: 57px;
+      background: none;
+    }
+  }
+
+  input[type="range"].w-short {
+    width: 130px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .result-item {
+    width: 427px;
+    height: 81px;
+  }
+
+  .gap {
+    column-gap: 32px;
+    row-gap: 0;
+  }
+
+  .btn-container {
+    width: 426px;
+    height: 68px;
+  }
+
+  button {
+    margin-top: 13px;
+    width: 100%;
+  }
+}

@@ -8,14 +8,19 @@
 
 ### Local usage:
 ```
+# Clone the repo
 git clone git@github.com:kirillmarkeyev/oxem-test-assignment.git
 cd oxem-test-assignment
+
+# Install dependencies
 make install
+
+# Start local server
 make start
 ```
 Then open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Easy example of a button with a spinner inside while loading (React-Bootstrap required)
+### Easy example of the button with a spinner inside while loading (React-Bootstrap required)
 ``` 
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,3 +1,6 @@
+[![Правильный CSS!](https://jigsaw.w3.org/css-validator/images/vcss-blue)](https://jigsaw.w3.org/css-validator/check/referer)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

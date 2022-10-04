@@ -2,6 +2,8 @@
 
 
 # Car leasing calculator
+### Description:
+[https://doc.clickup.com/2659433/p/h/2h539-67321/1cdca9cd67897c8](https://doc.clickup.com/2659433/p/h/2h539-67321/1cdca9cd67897c8)
 
 ### Demo on GitHub Pages:
 [https://kirillmarkeyev.github.io/oxem-test-assignment/](https://kirillmarkeyev.github.io/oxem-test-assignment/)

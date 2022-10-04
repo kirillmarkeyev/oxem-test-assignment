@@ -15,4 +15,4 @@ export const localeOptions = {
   maximumFractionDigits: 0,
 };
 
-export const route = 'https://eoj3r7f3r4ef6v4.m.pipedream.net';
+export const route = 'https://hookb.in/eK160jgYJ6UlaRPldJ1P';
